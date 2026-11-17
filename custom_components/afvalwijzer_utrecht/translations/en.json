@@ -1,0 +1,103 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Your address in Utrecht",
+        "description": "Fill in your postcode and house number. Works for the whole municipality of Utrecht (including Leidsche Rijn, Vleuten and De Meern).",
+        "data": {
+          "postcode": "Postcode",
+          "house_number": "House number",
+          "addition": "Addition (optional)"
+        },
+        "data_description": {
+          "addition": "Letter or number after the house number, e.g. A"
+        }
+      },
+      "choose": {
+        "title": "Which address?",
+        "description": "There are several addresses at this house number.",
+        "data": {
+          "address_id": "Address"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not reach the Afvalwijzer. Check your internet connection and try again.",
+      "address_not_found": "No address found. Is this postcode in the municipality of Utrecht?",
+      "addition_not_found": "This addition does not exist at this house number. Leave it empty to choose from a list."
+    },
+    "abort": {
+      "already_configured": "This address is already added."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next_date": {
+        "name": "Next pickup"
+      },
+      "next_type": {
+        "name": "Next waste type"
+      },
+      "today": {
+        "name": "Today"
+      },
+      "tomorrow": {
+        "name": "Tomorrow"
+      },
+      "notice": {
+        "name": "Notice"
+      },
+      "gft": {
+        "name": "Organic waste (GFT)"
+      },
+      "paper": {
+        "name": "Paper"
+      },
+      "residual": {
+        "name": "Residual waste"
+      },
+      "pmd": {
+        "name": "Plastic (PMD)"
+      },
+      "textile": {
+        "name": "Textiles"
+      },
+      "chemical": {
+        "name": "Small chemical waste"
+      },
+      "bulky": {
+        "name": "Bulky waste"
+      },
+      "christmas_tree": {
+        "name": "Christmas trees"
+      }
+    },
+    "binary_sensor": {
+      "today_or_tomorrow": {
+        "name": "Pickup today or tomorrow"
+      }
+    },
+    "calendar": {
+      "calendar": {
+        "name": "Pickup days"
+      }
+    }
+  },
+  "device": {
+    "waste": {
+      "name": "Waste"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Update interval",
+        "description": "The municipality can change the calendar (holidays, route changes). How often should Home Assistant fetch it again?",
+        "data": {
+          "update_hours": "Fetch every (hours)",
+          "text_language": "Language of the text (today, tomorrow, calendar)"
+        }
+      }
+    }
+  }
+}

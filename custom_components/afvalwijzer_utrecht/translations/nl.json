@@ -1,0 +1,103 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Je adres in Utrecht",
+        "description": "Vul je postcode en huisnummer in. Werkt voor de hele gemeente Utrecht (ook Leidsche Rijn, Vleuten en De Meern).",
+        "data": {
+          "postcode": "Postcode",
+          "house_number": "Huisnummer",
+          "addition": "Toevoeging (optioneel)"
+        },
+        "data_description": {
+          "addition": "Letter of cijfer na het huisnummer, bijvoorbeeld A"
+        }
+      },
+      "choose": {
+        "title": "Welk adres?",
+        "description": "Op dit huisnummer zijn meerdere adressen.",
+        "data": {
+          "address_id": "Adres"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "De Afvalwijzer is niet bereikbaar. Controleer je internetverbinding en probeer het opnieuw.",
+      "address_not_found": "Geen adres gevonden. Ligt deze postcode in de gemeente Utrecht?",
+      "addition_not_found": "Deze toevoeging bestaat niet op dit huisnummer. Laat het leeg om uit een lijst te kiezen."
+    },
+    "abort": {
+      "already_configured": "Dit adres is al toegevoegd."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next_date": {
+        "name": "Volgende ophaaldag"
+      },
+      "next_type": {
+        "name": "Volgende afval"
+      },
+      "today": {
+        "name": "Vandaag"
+      },
+      "tomorrow": {
+        "name": "Morgen"
+      },
+      "notice": {
+        "name": "Melding"
+      },
+      "gft": {
+        "name": "GFT"
+      },
+      "paper": {
+        "name": "Papier"
+      },
+      "residual": {
+        "name": "Restafval"
+      },
+      "pmd": {
+        "name": "PMD"
+      },
+      "textile": {
+        "name": "Textiel"
+      },
+      "chemical": {
+        "name": "Klein chemisch afval"
+      },
+      "bulky": {
+        "name": "Grofvuil"
+      },
+      "christmas_tree": {
+        "name": "Kerstbomen"
+      }
+    },
+    "binary_sensor": {
+      "today_or_tomorrow": {
+        "name": "Ophalen vandaag of morgen"
+      }
+    },
+    "calendar": {
+      "calendar": {
+        "name": "Ophaaldagen"
+      }
+    }
+  },
+  "device": {
+    "waste": {
+      "name": "Afval"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Verversen",
+        "description": "De gemeente kan de ophaaldagen wijzigen (feestdagen, nieuwe routes). Hoe vaak moet Home Assistant ze opnieuw ophalen?",
+        "data": {
+          "update_hours": "Ophalen elke (uur)",
+          "text_language": "Taal van de tekst (vandaag, morgen, agenda)"
+        }
+      }
+    }
+  }
+}
