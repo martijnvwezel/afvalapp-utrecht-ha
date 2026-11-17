@@ -9,16 +9,30 @@ See **when your bin is collected** in Home Assistant, for every address in the
 municipality of **Utrecht** (also Leidsche Rijn, Vleuten and De Meern).
 You only need your **postcode and house number**. No account.
 
-You get:
+<p>
+  <img src="docs/sensors.png" width="300" alt="Waste sensors in Home Assistant">
+  &nbsp;
+  <img src="docs/settings.png" width="300" alt="Settings: reminder on your phone">
+</p>
 
-- a **calendar** with all pickup days (shows up in the HA calendar, and works with automations)
-- **Today** and **Tomorrow**: e.g. `Papier` or `Geen`
-- **Notice**: one line for your dashboard, e.g. `Vandaag: Papier · Morgen: Groente, fruit en tuin`
-- **Pickup today or tomorrow**: on/off, to show a card only when it matters
-- **Next pickup** (date) and **Next waste type** (text)
-- one date sensor per waste type (GFT, Papier, ...) with the official instructions
+## What you get
 
-<img src="docs/sensors.png" width="320" alt="Waste sensors in Home Assistant">
+One device **Waste** (*Afval*) per address, with:
+
+| Entity | Example | Use it for |
+|---|---|---|
+| **Notice** | `Vandaag: Papier · Morgen: Groente, fruit en tuin` | One line on your dashboard |
+| **Today** | `Papier` or `Geen` | What goes out today |
+| **Tomorrow** | `Groente, fruit en tuin` or `Geen` | What goes out tomorrow |
+| **Pickup today or tomorrow** | `on` / `off` | Show a card only when it matters |
+| **Next pickup** | `2026-11-20` (+ `days_until`) | Date of the next pickup, any type |
+| **Next waste type** | `Papier` | What the next pickup is |
+| **Organic waste (GFT)**, **Paper**, ... | `2026-11-24` (+ `days_until`, `upcoming`, `instructions`) | Next date per waste type (only the types collected at your address) |
+| **Pickup days** (calendar) | all-day events `Papier`, `Groente, fruit en tuin` | HA calendar, automations |
+| **Reminder** (setting) | push *"Morgen: Papier. Zet de container vanavond buiten."* | Your phone, the evening before |
+
+Entity ids follow your Home Assistant language, e.g. `sensor.waste_notice` (English)
+or `sensor.afval_melding` (Dutch).
 
 ## Install
 
