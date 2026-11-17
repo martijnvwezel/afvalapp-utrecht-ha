@@ -1,0 +1,12 @@
+{
+  "domain": "afvalapp_utrecht",
+  "name": "Afvalapp Utrecht (unofficial)",
+  "codeowners": ["@martijnvwezel"],
+  "config_flow": true,
+  "documentation": "https://github.com/martijnvwezel/afvalapp-utrecht-ha",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/martijnvwezel/afvalapp-utrecht-ha/issues",
+  "requirements": [],
+  "version": "0.2.1"
+}

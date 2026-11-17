@@ -5,10 +5,10 @@ from homeassistant import config_entries
 from homeassistant.data_entry_flow import FlowResultType
 from pytest_homeassistant_custom_component.common import MockConfigEntry, async_fire_time_changed
 
-from custom_components.afvalwijzer_utrecht.api import ApiError, Pickup
-from custom_components.afvalwijzer_utrecht.const import DOMAIN
+from custom_components.afvalapp_utrecht.api import ApiError, Pickup
+from custom_components.afvalapp_utrecht.const import DOMAIN
 
-API = "custom_components.afvalwijzer_utrecht.api.AfvalApi"
+API = "custom_components.afvalapp_utrecht.api.AfvalApi"
 ADDR = {"addressId": "238127830377612675", "addition": "A", "zipcode": "3454HK",
         "street": "Rijksstraatweg", "city": "De Meern", "housenumber": 118}
 ADDR_B = {**ADDR, "addressId": "999", "addition": "B"}
@@ -175,7 +175,7 @@ async def test_reminder_evening_before_only(hass, freezer):
 
 
 async def test_options_show_phone_names(hass):
-    from custom_components.afvalwijzer_utrecht.config_flow import _notify_options
+    from custom_components.afvalapp_utrecht.config_flow import _notify_options
 
     async def noop(call):
         return None

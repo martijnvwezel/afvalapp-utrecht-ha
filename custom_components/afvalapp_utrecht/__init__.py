@@ -1,4 +1,4 @@
-"""Afvalwijzer Utrecht: when is the bin collected (gemeente Utrecht)."""
+"""Afvalapp Utrecht: when is the bin collected (gemeente Utrecht)."""
 
 from __future__ import annotations
 

@@ -43,7 +43,7 @@ class AfvalCoordinator(DataUpdateCoordinator[list[Pickup]]):
         try:
             return await self.api.calendar(self.address_id)
         except ApiError as err:
-            raise UpdateFailed(f"Afvalwijzer not reachable: {err}") from err
+            raise UpdateFailed(f"Afvalapp not reachable: {err}") from err
 
     # -- helpers used by the entities -------------------------------------
     @property

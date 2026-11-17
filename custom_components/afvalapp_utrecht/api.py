@@ -1,4 +1,4 @@
-"""Tiny client for Burgerportaal, the backend of the Afvalwijzer Utrecht app."""
+"""Tiny client for Burgerportaal, the backend of the Afvalapp Utrecht app."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ API_KEY = "AIzaSyA6NkRqJypTfP-cjWzrZNFJzPUbBaGjOdk"
 TOKEN_URL = f"https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key={API_KEY}"
 BASE = "https://europe-west3-burgerportaal-production.cloudfunctions.net/exposed"
 # Requests without a browser-like User-Agent get 403.
-HEADERS = {"User-Agent": "Mozilla/5.0 (Home Assistant afvalwijzer_utrecht)"}
+HEADERS = {"User-Agent": "Mozilla/5.0 (Home Assistant afvalapp_utrecht)"}
 TIMEOUT = aiohttp.ClientTimeout(total=30)
 
 

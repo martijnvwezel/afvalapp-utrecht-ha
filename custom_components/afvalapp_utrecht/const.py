@@ -1,8 +1,8 @@
-"""Constants for Afvalwijzer Utrecht."""
+"""Constants for Afvalapp Utrecht."""
 
-DOMAIN = "afvalwijzer_utrecht"
+DOMAIN = "afvalapp_utrecht"
 
-# Gemeente Utrecht in Burgerportaal (the backend of the "Afvalwijzer Utrecht" app).
+# Gemeente Utrecht in Burgerportaal (the backend of the "Afvalapp Utrecht" app).
 ORGANISATION_ID = "452048812597339479"
 
 CONF_POSTCODE = "postcode"

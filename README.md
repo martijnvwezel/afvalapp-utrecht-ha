@@ -1,9 +1,10 @@
-# Afvalwijzer Utrecht for Home Assistant (unofficial)
+# Afvalapp Utrecht for Home Assistant (unofficial)
 
 > Community project. Not made, endorsed or supported by Gemeente Utrecht.
-> Uses the same data as the official *Afvalwijzer Utrecht* app.
+> Uses the same data as the official **Utrechtse Afvalapp** (the new app of the municipality,
+> which replaces the old *Afvalwijzer* / mijnafvalwijzer.nl from 2027).
 
-[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=martijnvwezel&repository=afvalwijzer-utrecht-ha&category=integration)
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=martijnvwezel&repository=afvalapp-utrecht-ha&category=integration)
 
 See **when your bin is collected** in Home Assistant, for every address in the
 municipality of **Utrecht** (also Leidsche Rijn, Vleuten and De Meern).
@@ -38,12 +39,12 @@ or `sensor.afval_melding` (Dutch).
 
 1. Install [HACS](https://hacs.xyz) if you don't have it.
 2. Click **Open in HACS** above (or HACS → ⋮ → *Custom repositories* →
-   `https://github.com/martijnvwezel/afvalwijzer-utrecht-ha`, type *Integration*), then *Download*.
+   `https://github.com/martijnvwezel/afvalapp-utrecht-ha`, type *Integration*), then *Download*.
 3. Restart Home Assistant.
-4. Settings → Devices & services → **Add integration** → *Afvalwijzer Utrecht*.
+4. Settings → Devices & services → **Add integration** → *Afvalapp Utrecht*.
 5. Type your postcode and house number (and addition like `A` if you have one). Done.
 
-No HACS? Copy `custom_components/afvalwijzer_utrecht` into `/config/custom_components/` and restart.
+No HACS? Copy `custom_components/afvalapp_utrecht` into `/config/custom_components/` and restart.
 
 ## Show a card only when the bin goes out
 
@@ -67,7 +68,7 @@ card:
 Get a push message **the evening before** a pickup day, e.g.
 *"Morgen: Papier. Zet de container vanavond buiten."* Never on the pickup day itself.
 
-1. Settings → Devices & services → **Afvalwijzer Utrecht**.
+1. Settings → Devices & services → **Afvalapp Utrecht**.
 2. Click the **gear** (⚙) next to your address.
 3. Under **Send a reminder the evening before to**, tick your phone.
    (Your phone shows up here once the Home Assistant Companion app is installed and logged in.)
@@ -87,12 +88,12 @@ The same dialog has two more settings:
 ## Nederlands, kort
 
 Installeer via HACS, herstart, en kies *Instellingen → Apparaten & diensten →
-Integratie toevoegen → Afvalwijzer Utrecht*. Vul postcode en huisnummer in. Je krijgt een
+Integratie toevoegen → Afvalapp Utrecht*. Vul postcode en huisnummer in. Je krijgt een
 agenda met ophaaldagen, sensoren *Vandaag*, *Morgen* en *Melding*
 (`Vandaag: Papier · Morgen: Groente, fruit en tuin`), en een aan/uit-sensor
 *Ophalen vandaag of morgen* om een kaart alleen te tonen als het nodig is.
 
 **Herinnering op je telefoon** (de avond van tevoren, nooit op de ophaaldag zelf):
-*Instellingen → Apparaten & diensten → Afvalwijzer Utrecht → tandwiel (⚙) bij je adres* →
+*Instellingen → Apparaten & diensten → Afvalapp Utrecht → tandwiel (⚙) bij je adres* →
 vink je telefoon aan bij *Herinnering de avond van tevoren sturen naar*, kies de tijd
 (standaard 18:00) → *Verzenden*. Je telefoon moet de Home Assistant-app hebben.

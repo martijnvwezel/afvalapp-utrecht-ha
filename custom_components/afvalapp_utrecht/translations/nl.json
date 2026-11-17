@@ -22,7 +22,7 @@
       }
     },
     "error": {
-      "cannot_connect": "De Afvalwijzer is niet bereikbaar. Controleer je internetverbinding en probeer het opnieuw.",
+      "cannot_connect": "De Afvalapp is niet bereikbaar. Controleer je internetverbinding en probeer het opnieuw.",
       "address_not_found": "Geen adres gevonden. Ligt deze postcode in de gemeente Utrecht?",
       "addition_not_found": "Deze toevoeging bestaat niet op dit huisnummer. Laat het leeg om uit een lijst te kiezen."
     },
