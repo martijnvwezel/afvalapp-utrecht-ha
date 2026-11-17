@@ -106,6 +106,10 @@ agenda met ophaaldagen, sensoren *Vandaag*, *Morgen* en *Melding*
 vink je telefoon aan bij *Herinnering de avond van tevoren sturen naar*, kies de tijd
 (standaard 18:00) → *Verzenden*. Je telefoon moet de Home Assistant-app hebben.
 
+## Support
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/muino)
+
 ## License
 
 [MIT](LICENSE)
