@@ -2,7 +2,7 @@
 
 > [!IMPORTANT]
 > **Uses the new Utrechtse Afvalapp, not the old Afvalwijzer.**
-> Since 2026 the municipality of Utrecht has its own *Afvalapp*. The old *Afvalwijzer*
+> The municipality of Utrecht now has its own *Afvalapp*. The old *Afvalwijzer*
 > (mijnafvalwijzer.nl) stops for Utrecht at the end of 2026. Integrations built on the
 > Afvalwijzer will stop working then; this one reads the same data as the new app, so it keeps working.
 
