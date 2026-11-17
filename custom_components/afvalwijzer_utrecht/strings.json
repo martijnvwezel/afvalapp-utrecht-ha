@@ -91,13 +91,18 @@
   "options": {
     "step": {
       "init": {
-        "title": "Update interval",
-        "description": "The municipality can change the calendar (holidays, route changes). How often should Home Assistant fetch it again?",
+        "title": "Settings",
         "data": {
-          "update_hours": "Fetch every (hours)",
-          "text_language": "Language of the text (today, tomorrow, calendar)",
-          "reminder_targets": "Remind the evening before on (leave empty: no reminder)",
-          "reminder_time": "Reminder time (the evening before)"
+          "reminder_targets": "Send a reminder the evening before to",
+          "reminder_time": "Time of the reminder",
+          "text_language": "Language of the waste names",
+          "update_hours": "Check for calendar changes every"
+        },
+        "data_description": {
+          "reminder_targets": "Tick your phone (needs the Home Assistant Companion app). Nothing ticked = no reminder. You never get a reminder on the pickup day itself.",
+          "reminder_time": "On the evening before a pickup day, e.g. 18:00.",
+          "text_language": "Used in Today, Tomorrow, Notice, the calendar and the reminder.",
+          "update_hours": "The municipality sometimes moves pickup days (holidays, new routes). 6 hours is fine; lower only if you want changes sooner."
         }
       }
     }

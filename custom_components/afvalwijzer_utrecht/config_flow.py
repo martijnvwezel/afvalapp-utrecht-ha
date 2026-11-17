@@ -8,9 +8,14 @@ from typing import Any
 import voluptuous as vol
 
 from homeassistant.config_entries import ConfigEntry, ConfigFlow, ConfigFlowResult, OptionsFlow
-from homeassistant.core import callback
+from homeassistant.core import HomeAssistant, callback
+from homeassistant.util import slugify
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.selector import (
+    NumberSelector,
+    NumberSelectorConfig,
+    NumberSelectorMode,
+    SelectOptionDict,
     SelectSelector,
     SelectSelectorConfig,
     SelectSelectorMode,
@@ -116,44 +121,71 @@ class AfvalConfigFlow(ConfigFlow, domain=DOMAIN):
         )
 
 
+def _notify_options(hass: HomeAssistant) -> list[SelectOptionDict]:
+    """Notify services with readable names: phones by their own name first."""
+    phones = {
+        f"mobile_app_{slugify(e.data.get('device_name') or e.title)}": e.title
+        for e in hass.config_entries.async_entries("mobile_app")
+    }
+    services = hass.services.async_services_for_domain("notify")
+    out = [
+        SelectOptionDict(value=svc, label=f"📱 {name}")
+        for svc, name in sorted(phones.items(), key=lambda kv: kv[1].lower())
+        if svc in services
+    ]
+    if "persistent_notification" in services:
+        out.append(SelectOptionDict(
+            value="persistent_notification", label="🔔 Home Assistant (Notifications in the sidebar)"
+        ))
+    out += [
+        SelectOptionDict(value=svc, label=svc)
+        for svc in sorted(services)
+        if svc not in phones and svc not in ("send_message", "notify", "persistent_notification")
+    ]
+    return out
+
+
 class AfvalOptionsFlow(OptionsFlow):
-    """Refresh interval, text language and the evening-before reminder."""
+    """Reminder the evening before, text language and how often to check for changes."""
 
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
         if user_input is not None:
+            user_input[CONF_UPDATE_HOURS] = int(user_input[CONF_UPDATE_HOURS])
             return self.async_create_entry(data=user_input)
         opts = self.config_entry.options
-        # Phones etc. from the Companion app show up as notify.mobile_app_*.
-        notify = sorted(
-            s for s in self.hass.services.async_services_for_domain("notify")
-            if s not in ("send_message", "notify")
-        )
+        targets = _notify_options(self.hass)
+        valid = {t["value"] for t in targets}
         return self.async_show_form(
             step_id="init",
             data_schema=vol.Schema(
                 {
-                    vol.Required(
-                        CONF_UPDATE_HOURS,
-                        default=opts.get(CONF_UPDATE_HOURS, DEFAULT_UPDATE_HOURS),
-                    ): vol.All(vol.Coerce(int), vol.Range(min=1, max=168)),
-                    vol.Required(
-                        CONF_TEXT_LANGUAGE,
-                        default=opts.get(CONF_TEXT_LANGUAGE, DEFAULT_TEXT_LANGUAGE),
-                    ): vol.In({"nl": "Nederlands", "en": "English"}),
                     vol.Optional(
                         CONF_REMINDER_TARGETS,
-                        default=[t for t in opts.get(CONF_REMINDER_TARGETS, []) if t in notify],
+                        default=[t for t in opts.get(CONF_REMINDER_TARGETS, []) if t in valid],
                     ): SelectSelector(
                         SelectSelectorConfig(
-                            options=notify, multiple=True, mode=SelectSelectorMode.LIST
+                            options=targets, multiple=True, mode=SelectSelectorMode.LIST
                         )
                     ),
                     vol.Required(
                         CONF_REMINDER_TIME,
                         default=opts.get(CONF_REMINDER_TIME, DEFAULT_REMINDER_TIME),
                     ): TimeSelector(),
+                    vol.Required(
+                        CONF_TEXT_LANGUAGE,
+                        default=opts.get(CONF_TEXT_LANGUAGE, DEFAULT_TEXT_LANGUAGE),
+                    ): vol.In({"nl": "Nederlands", "en": "English"}),
+                    vol.Required(
+                        CONF_UPDATE_HOURS,
+                        default=opts.get(CONF_UPDATE_HOURS, DEFAULT_UPDATE_HOURS),
+                    ): NumberSelector(
+                        NumberSelectorConfig(
+                            min=1, max=168, step=1, mode=NumberSelectorMode.BOX,
+                            unit_of_measurement="hours",
+                        )
+                    ),
                 }
             ),
         )

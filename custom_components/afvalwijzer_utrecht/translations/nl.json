@@ -91,13 +91,18 @@
   "options": {
     "step": {
       "init": {
-        "title": "Verversen",
-        "description": "De gemeente kan de ophaaldagen wijzigen (feestdagen, nieuwe routes). Hoe vaak moet Home Assistant ze opnieuw ophalen?",
+        "title": "Instellingen",
         "data": {
-          "update_hours": "Ophalen elke (uur)",
-          "text_language": "Taal van de tekst (vandaag, morgen, agenda)",
-          "reminder_targets": "Herinnering de avond van tevoren naar (leeg: geen herinnering)",
-          "reminder_time": "Tijd van de herinnering (avond van tevoren)"
+          "reminder_targets": "Herinnering de avond van tevoren sturen naar",
+          "reminder_time": "Tijd van de herinnering",
+          "text_language": "Taal van de afvalnamen",
+          "update_hours": "Controleren op wijzigingen elke"
+        },
+        "data_description": {
+          "reminder_targets": "Vink je telefoon aan (daarvoor heb je de Home Assistant-app nodig). Niets aangevinkt = geen herinnering. Op de ophaaldag zelf krijg je nooit een melding.",
+          "reminder_time": "De avond voor een ophaaldag, bijvoorbeeld 18:00.",
+          "text_language": "Voor Vandaag, Morgen, Melding, de agenda en de herinnering.",
+          "update_hours": "De gemeente verschuift soms ophaaldagen (feestdagen, nieuwe routes). 6 uur is prima; zet het lager als je wijzigingen sneller wilt zien."
         }
       }
     }

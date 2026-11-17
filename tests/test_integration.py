@@ -172,3 +172,18 @@ async def test_reminder_evening_before_only(hass, freezer):
     async_fire_time_changed(hass)
     await hass.async_block_till_done()
     assert len(calls) == 2 and "Papier" in calls[1].data["message"]
+
+
+async def test_options_show_phone_names(hass):
+    from custom_components.afvalwijzer_utrecht.config_flow import _notify_options
+
+    async def noop(call):
+        return None
+
+    MockConfigEntry(domain="mobile_app", title="Pixel 11", data={"device_name": "Pixel 11"}).add_to_hass(hass)
+    hass.services.async_register("notify", "mobile_app_pixel_11", noop)
+    hass.services.async_register("notify", "persistent_notification", noop)
+    hass.services.async_register("notify", "send_message", noop)
+    opts = _notify_options(hass)
+    assert [o["value"] for o in opts] == ["mobile_app_pixel_11", "persistent_notification"]
+    assert opts[0]["label"] == "📱 Pixel 11"
