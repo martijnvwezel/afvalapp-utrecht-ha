@@ -48,21 +48,27 @@ card:
 (Entity ids depend on your Home Assistant language. With Home Assistant in English they are
 `binary_sensor.waste_pickup_today_or_tomorrow` and `sensor.waste_notice`.)
 
-## Reminder the evening before
+## Settings: reminder on your phone
 
-Built in. *Devices & services → Afvalwijzer Utrecht → Configure*:
-pick your phone(s) under **Remind the evening before on** and set the time (default 18:00).
-You get e.g. *"Morgen: Papier. Zet de container vanavond buiten."* the evening before a pickup,
-and nothing on the pickup day itself. Your phone needs the Home Assistant Companion app.
+Get a push message **the evening before** a pickup day, e.g.
+*"Morgen: Papier. Zet de container vanavond buiten."* Never on the pickup day itself.
 
-## Updates
+1. Settings → Devices & services → **Afvalwijzer Utrecht**.
+2. Click the **gear** (⚙) next to your address.
+3. Under **Send a reminder the evening before to**, tick your phone.
+   (Your phone shows up here once the Home Assistant Companion app is installed and logged in.)
+4. Set **Time of the reminder** (default 18:00).
+5. **Submit**. Done.
 
-The municipality can change the calendar (holidays, new routes). The integration
-fetches it again every **6 hours**. Change it via *Devices & services →
-Afvalwijzer Utrecht → Configure* (1 to 168 hours). "Today" and "Tomorrow" switch at midnight.
+<img src="docs/settings.png" width="320" alt="Settings dialog">
 
-The text in the sensors and calendar is **Dutch** by default (`Papier`, `Vandaag: ...`).
-Switch it to English in the same *Configure* dialog.
+The same dialog has two more settings:
+
+- **Language of the waste names**: Dutch (default, e.g. `Papier`, `Vandaag: ...`) or English.
+  Used in Today, Tomorrow, Notice, the calendar and the reminder.
+- **Check for calendar changes every ... hours** (default 6): the municipality sometimes
+  moves pickup days (holidays, new routes); this is how often Home Assistant checks.
+  "Today" and "Tomorrow" always switch at midnight, whatever you pick here.
 
 ## Nederlands, kort
 
@@ -71,4 +77,8 @@ Integratie toevoegen → Afvalwijzer Utrecht*. Vul postcode en huisnummer in. Je
 agenda met ophaaldagen, sensoren *Vandaag*, *Morgen* en *Melding*
 (`Vandaag: Papier · Morgen: Groente, fruit en tuin`), en een aan/uit-sensor
 *Ophalen vandaag of morgen* om een kaart alleen te tonen als het nodig is.
-Onder *Configureren* kies je je telefoon voor een herinnering de avond van tevoren (standaard 18:00).
+
+**Herinnering op je telefoon** (de avond van tevoren, nooit op de ophaaldag zelf):
+*Instellingen → Apparaten & diensten → Afvalwijzer Utrecht → tandwiel (⚙) bij je adres* →
+vink je telefoon aan bij *Herinnering de avond van tevoren sturen naar*, kies de tijd
+(standaard 18:00) → *Verzenden*. Je telefoon moet de Home Assistant-app hebben.
