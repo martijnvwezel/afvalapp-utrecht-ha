@@ -1,8 +1,12 @@
 # Afvalapp Utrecht for Home Assistant (unofficial)
 
+> [!IMPORTANT]
+> **Uses the new Utrechtse Afvalapp, not the old Afvalwijzer.**
+> Since 2026 the municipality of Utrecht has its own *Afvalapp*. The old *Afvalwijzer*
+> (mijnafvalwijzer.nl) stops for Utrecht at the end of 2026. Integrations built on the
+> Afvalwijzer will stop working then; this one reads the same data as the new app, so it keeps working.
+
 > Community project. Not made, endorsed or supported by Gemeente Utrecht.
-> Uses the same data as the official **Utrechtse Afvalapp** (the new app of the municipality,
-> which replaces the old *Afvalwijzer* / mijnafvalwijzer.nl from 2027).
 
 [![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=martijnvwezel&repository=afvalapp-utrecht-ha&category=integration)
 
@@ -87,6 +91,10 @@ The same dialog has two more settings:
 
 ## Nederlands, kort
 
+Deze integratie gebruikt de gegevens van de **nieuwe Utrechtse Afvalapp**, niet van de oude
+Afvalwijzer (mijnafvalwijzer.nl). Die stopt eind 2026 voor Utrecht; deze integratie blijft werken.
+
+
 Installeer via HACS, herstart, en kies *Instellingen → Apparaten & diensten →
 Integratie toevoegen → Afvalapp Utrecht*. Vul postcode en huisnummer in. Je krijgt een
 agenda met ophaaldagen, sensoren *Vandaag*, *Morgen* en *Melding*
@@ -97,3 +105,7 @@ agenda met ophaaldagen, sensoren *Vandaag*, *Morgen* en *Melding*
 *Instellingen → Apparaten & diensten → Afvalapp Utrecht → tandwiel (⚙) bij je adres* →
 vink je telefoon aan bij *Herinnering de avond van tevoren sturen naar*, kies de tijd
 (standaard 18:00) → *Verzenden*. Je telefoon moet de Home Assistant-app hebben.
+
+## License
+
+[MIT](LICENSE)
