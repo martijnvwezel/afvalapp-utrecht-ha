@@ -135,3 +135,40 @@ async def test_options_interval(hass):
     assert r["type"] is FlowResultType.CREATE_ENTRY
     assert entry.runtime_data.update_interval.total_seconds() == 3600
     assert entry.runtime_data.lang == "en"
+
+
+async def test_reminder_evening_before_only(hass, freezer):
+    from homeassistant.core import ServiceCall
+    calls: list[ServiceCall] = []
+
+    async def fake(call):
+        calls.append(call)
+
+    hass.services.async_register("notify", "mobile_app_phone", fake)
+    freezer.move_to("2026-11-16 12:00:00+01:00")
+    entry = await _setup(hass)
+    r = await hass.config_entries.options.async_init(entry.entry_id)
+    r = await hass.config_entries.options.async_configure(
+        r["flow_id"], {"update_hours": 6, "text_language": "nl",
+                       "reminder_targets": ["mobile_app_phone"], "reminder_time": "18:00:00"})
+    await hass.async_block_till_done()
+
+    # Evening before GFT (17 nov): one push.
+    freezer.move_to("2026-11-16 18:00:00+01:00")
+    async_fire_time_changed(hass)
+    await hass.async_block_till_done()
+    assert len(calls) == 1
+    assert calls[0].data == {"title": "Afval morgen",
+                             "message": "Morgen: Groente, fruit en tuin. Zet de container vanavond buiten."}
+
+    # The pickup day itself (nothing tomorrow): no push.
+    freezer.move_to("2026-11-17 18:00:00+01:00")
+    async_fire_time_changed(hass)
+    await hass.async_block_till_done()
+    assert len(calls) == 1
+
+    # Evening before paper (20 nov): push again.
+    freezer.move_to("2026-11-19 18:00:00+01:00")
+    async_fire_time_changed(hass)
+    await hass.async_block_till_done()
+    assert len(calls) == 2 and "Papier" in calls[1].data["message"]

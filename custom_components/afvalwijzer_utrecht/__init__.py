@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.event import async_track_time_change
 
 from .coordinator import AfvalCoordinator
+from .reminder import async_setup_reminder
 
 PLATFORMS = [Platform.BINARY_SENSOR, Platform.CALENDAR, Platform.SENSOR]
 
@@ -29,7 +30,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: AfvalConfigEntry) -> boo
     entry.async_on_unload(
         async_track_time_change(hass, _new_day, hour=0, minute=0, second=5)
     )
-    # New update interval from the options dialog: reload.
+    async_setup_reminder(hass, entry, coordinator)
+    # Changed options (interval, language, reminder): reload.
     entry.async_on_unload(entry.add_update_listener(_async_reload))
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     return True

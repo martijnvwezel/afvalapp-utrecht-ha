@@ -14,6 +14,10 @@ CONF_UPDATE_HOURS = "update_hours"
 DEFAULT_UPDATE_HOURS = 6
 CONF_TEXT_LANGUAGE = "text_language"
 DEFAULT_TEXT_LANGUAGE = "nl"
+# Reminder the evening before a pickup (never on the day itself).
+CONF_REMINDER_TARGETS = "reminder_targets"  # notify services, e.g. "mobile_app_pixel"
+CONF_REMINDER_TIME = "reminder_time"
+DEFAULT_REMINDER_TIME = "18:00:00"
 
 # API fraction code -> our key (also the translation key of the per-type sensor).
 FRACTIONS = {
@@ -34,12 +38,14 @@ LABELS = {
         "pmd": "Plastic (PMD)", "textile": "Textiel", "chemical": "Klein chemisch afval",
         "bulky": "Grofvuil", "christmas_tree": "Kerstbomen",
         "_none": "Geen", "_today": "Vandaag", "_tomorrow": "Morgen",
+        "_reminder_title": "Afval morgen", "_reminder": "Zet de container vanavond buiten.",
     },
     "en": {
         "gft": "Organic waste (GFT)", "paper": "Paper", "residual": "Residual waste",
         "pmd": "Plastic (PMD)", "textile": "Textiles", "chemical": "Small chemical waste",
         "bulky": "Bulky waste", "christmas_tree": "Christmas trees",
         "_none": "None", "_today": "Today", "_tomorrow": "Tomorrow",
+        "_reminder_title": "Bin day tomorrow", "_reminder": "Put the bin out tonight.",
     },
 }
 

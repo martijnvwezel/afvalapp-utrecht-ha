@@ -95,7 +95,9 @@
         "description": "De gemeente kan de ophaaldagen wijzigen (feestdagen, nieuwe routes). Hoe vaak moet Home Assistant ze opnieuw ophalen?",
         "data": {
           "update_hours": "Ophalen elke (uur)",
-          "text_language": "Taal van de tekst (vandaag, morgen, agenda)"
+          "text_language": "Taal van de tekst (vandaag, morgen, agenda)",
+          "reminder_targets": "Herinnering de avond van tevoren naar (leeg: geen herinnering)",
+          "reminder_time": "Tijd van de herinnering (avond van tevoren)"
         }
       }
     }

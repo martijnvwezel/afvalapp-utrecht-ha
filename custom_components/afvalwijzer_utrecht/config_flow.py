@@ -10,6 +10,12 @@ import voluptuous as vol
 from homeassistant.config_entries import ConfigEntry, ConfigFlow, ConfigFlowResult, OptionsFlow
 from homeassistant.core import callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
+from homeassistant.helpers.selector import (
+    SelectSelector,
+    SelectSelectorConfig,
+    SelectSelectorMode,
+    TimeSelector,
+)
 
 from .api import AfvalApi, ApiError, address_title, clean_postcode
 from .const import (
@@ -17,8 +23,11 @@ from .const import (
     CONF_ADDRESS_ID,
     CONF_HOUSE_NUMBER,
     CONF_POSTCODE,
+    CONF_REMINDER_TARGETS,
+    CONF_REMINDER_TIME,
     CONF_TEXT_LANGUAGE,
     CONF_UPDATE_HOURS,
+    DEFAULT_REMINDER_TIME,
     DEFAULT_TEXT_LANGUAGE,
     DEFAULT_UPDATE_HOURS,
     DOMAIN,
@@ -108,7 +117,7 @@ class AfvalConfigFlow(ConfigFlow, domain=DOMAIN):
 
 
 class AfvalOptionsFlow(OptionsFlow):
-    """How often to fetch the calendar again (the municipality can change it)."""
+    """Refresh interval, text language and the evening-before reminder."""
 
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None
@@ -116,6 +125,11 @@ class AfvalOptionsFlow(OptionsFlow):
         if user_input is not None:
             return self.async_create_entry(data=user_input)
         opts = self.config_entry.options
+        # Phones etc. from the Companion app show up as notify.mobile_app_*.
+        notify = sorted(
+            s for s in self.hass.services.async_services_for_domain("notify")
+            if s not in ("send_message", "notify")
+        )
         return self.async_show_form(
             step_id="init",
             data_schema=vol.Schema(
@@ -128,6 +142,18 @@ class AfvalOptionsFlow(OptionsFlow):
                         CONF_TEXT_LANGUAGE,
                         default=opts.get(CONF_TEXT_LANGUAGE, DEFAULT_TEXT_LANGUAGE),
                     ): vol.In({"nl": "Nederlands", "en": "English"}),
+                    vol.Optional(
+                        CONF_REMINDER_TARGETS,
+                        default=[t for t in opts.get(CONF_REMINDER_TARGETS, []) if t in notify],
+                    ): SelectSelector(
+                        SelectSelectorConfig(
+                            options=notify, multiple=True, mode=SelectSelectorMode.LIST
+                        )
+                    ),
+                    vol.Required(
+                        CONF_REMINDER_TIME,
+                        default=opts.get(CONF_REMINDER_TIME, DEFAULT_REMINDER_TIME),
+                    ): TimeSelector(),
                 }
             ),
         )

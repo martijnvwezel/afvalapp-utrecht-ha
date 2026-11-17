@@ -50,21 +50,10 @@ card:
 
 ## Reminder the evening before
 
-```yaml
-triggers:
-  - trigger: time
-    at: "20:00:00"
-conditions:
-  - condition: not
-    conditions:
-      - condition: state
-        entity_id: sensor.afval_morgen
-        state: Geen
-actions:
-  - action: notify.notify
-    data:
-      message: "Morgen: {{ states('sensor.afval_morgen') }} aan de straat"
-```
+Built in. *Devices & services → Afvalwijzer Utrecht → Configure*:
+pick your phone(s) under **Remind the evening before on** and set the time (default 18:00).
+You get e.g. *"Morgen: Papier. Zet de container vanavond buiten."* the evening before a pickup,
+and nothing on the pickup day itself. Your phone needs the Home Assistant Companion app.
 
 ## Updates
 
@@ -82,3 +71,4 @@ Integratie toevoegen → Afvalwijzer Utrecht*. Vul postcode en huisnummer in. Je
 agenda met ophaaldagen, sensoren *Vandaag*, *Morgen* en *Melding*
 (`Vandaag: Papier · Morgen: Groente, fruit en tuin`), en een aan/uit-sensor
 *Ophalen vandaag of morgen* om een kaart alleen te tonen als het nodig is.
+Onder *Configureren* kies je je telefoon voor een herinnering de avond van tevoren (standaard 18:00).

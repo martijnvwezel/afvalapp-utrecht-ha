@@ -95,7 +95,9 @@
         "description": "The municipality can change the calendar (holidays, route changes). How often should Home Assistant fetch it again?",
         "data": {
           "update_hours": "Fetch every (hours)",
-          "text_language": "Language of the text (today, tomorrow, calendar)"
+          "text_language": "Language of the text (today, tomorrow, calendar)",
+          "reminder_targets": "Remind the evening before on (leave empty: no reminder)",
+          "reminder_time": "Reminder time (the evening before)"
         }
       }
     }
